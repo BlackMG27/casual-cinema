@@ -6,8 +6,8 @@ import { searchMedia } from '../src/lib/api'
 
 export default function Home({data}) {
   const [results, setResults] = useState(data)
-  const [query, setQuery] = useState('')
-  const imageURL = "https://image.tmdb.org/t/p/w500/"
+  const [query, setQuery] = useState(' ')
+  const imageURL = "https://image.tmdb.org/t/p/w500"
   
   const handleSubmit = async(e) => {
     await e.preventDefault();
@@ -40,12 +40,21 @@ export default function Home({data}) {
           {
             results.map(item => (
               <figure key={item.id}>
-                <img
+                <Image
                   src={imageURL + item.poster_path}
-                  alt={item.title}
+                  width="100%"
+                  height="100%"
+                  alt={item.original_title}
                 />
-                <h3>{item.title}</h3>
+                {
+                  (item.media_type === "tv")? (
+                    <h3>{item.name}</h3>
+                  ) : (item.media_type === "movie")? (
+                    <h3>{item.title}</h3>
+                  ):null
+                }
                 <p>{item.overview}</p>
+                <button>Get Details</button>
               </figure>
             ))
           }
