@@ -5,8 +5,8 @@ import Image from "next/image";
 import { getDetailsById } from "../../src/lib/api";
 
 
-export default function Media({details}){
-    console.log(details)
+export default function Media({info}){
+    console.log(info)
     return (
         <Fragment>
             <Head>
@@ -17,10 +17,10 @@ export default function Media({details}){
 }
 
 export async function getServerSideProps(){
-    const details = await getDetailsById()
+    const info = await getDetailsById()
     return {
         props: {
-            details,
+            info,
         }
     }
 }

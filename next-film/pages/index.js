@@ -2,14 +2,14 @@ import React, {Fragment, useState} from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { searchMedia, getDetailsById } from '../src/lib/api'
 
 
 export default function Home({data}) {
   const [results, setResults] = useState(data)
   const [query, setQuery] = useState(' ')
-  const [id, setId] = useState(null)
-  const [media, setMedia] = useState('')
+  const router = useRouter()
   const imageURL = "https://image.tmdb.org/t/p/w500"
   
   const handleSubmit = async(e) => {
@@ -19,13 +19,15 @@ export default function Home({data}) {
     await setQuery('')
   }
 
-  const handleClick = async() => {
+  const handleClick = async(id, media) => {
     const details = {
       id: id,
       media: media
     }
     console.log(details)
     getDetailsById(details)
+    router.push(`/media/${id}`)
+
   }
   return (
     <Fragment>
@@ -65,10 +67,9 @@ export default function Home({data}) {
                   ):null
                 }
                 <p>{item.overview}</p>
-                  <button
-                    onClick={() => {handleClick(), setId(item.id),setMedia(item.media_type)
-                  }}
-                  >Get Details</button>
+                    <button
+                      onClick={() => handleClick(item.id, item.media_type)}
+                    >Get Details</button>
               </figure>
             ))
           }
