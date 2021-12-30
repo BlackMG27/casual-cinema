@@ -1,12 +1,15 @@
 import React, {Fragment, useState} from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import { searchMedia } from '../src/lib/api'
+import Link from 'next/link'
+import { searchMedia, getDetailsById } from '../src/lib/api'
 
 
 export default function Home({data}) {
   const [results, setResults] = useState(data)
   const [query, setQuery] = useState(' ')
+  const [id, setId] = useState(null)
+  const [media, setMedia] = useState('')
   const imageURL = "https://image.tmdb.org/t/p/w500"
   
   const handleSubmit = async(e) => {
@@ -15,7 +18,15 @@ export default function Home({data}) {
     await setResults(res)
     await setQuery('')
   }
-  console.log(results)
+
+  const handleClick = async() => {
+    const details = {
+      id: id,
+      media: media
+    }
+    console.log(details)
+    getDetailsById(details)
+  }
   return (
     <Fragment>
       <Head>
@@ -54,7 +65,10 @@ export default function Home({data}) {
                   ):null
                 }
                 <p>{item.overview}</p>
-                <button>Get Details</button>
+                  <button
+                    onClick={() => {handleClick(), setId(item.id),setMedia(item.media_type)
+                  }}
+                  >Get Details</button>
               </figure>
             ))
           }
