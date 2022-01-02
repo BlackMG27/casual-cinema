@@ -10,10 +10,7 @@ export const searchMedia = async(query) => {
 }
 
 export const getDetailsById = async(details) => {
-    console.log(details)
      const showMedia = `https://api.themoviedb.org/3/${details.media}/${details.id}?api_key=${tmdbToken}&append_to_response=videos`
-
-     console.log(showMedia)
 
     const res = await fetch(showMedia);
     const resJson = await res.json();

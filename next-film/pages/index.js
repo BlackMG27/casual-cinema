@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { searchMedia, getDetailsById } from '../src/lib/api'
+import { searchMedia } from '../src/lib/api'
 
 
 export default function Home({data}) {
@@ -20,14 +20,7 @@ export default function Home({data}) {
   }
 
   const handleClick = async(id, media) => {
-    const details = {
-      id: id,
-      media: media
-    }
-    console.log(details)
-    getDetailsById(details)
-    router.push(`/media/${id}`)
-
+    router.push(`/${media}-${id}`)
   }
   return (
     <Fragment>
