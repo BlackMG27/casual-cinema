@@ -10,8 +10,15 @@ export default function Media({details}){
     return (
         <Fragment>
             <Head>
-                <title></title>
+                
+                
             </Head>
+            <header>
+                
+            </header>
+            <main>
+                
+            </main>
         </Fragment>
     )
 }
