@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { getDetailsById } from "../../src/lib/api";
+import { getDetailsById } from "../../../src/lib/api";
 
 
 export default function Media({details}){
@@ -24,6 +24,7 @@ export default function Media({details}){
 }
 
 export async function getServerSideProps({params}){
+    console.log(params)
     const details = await getDetailsById(params.media, params.id)
     return{
         props:{

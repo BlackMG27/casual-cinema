@@ -57,15 +57,27 @@ export default function Home({data}) {
                 }
                 <p>{item.overview}</p>
                    <button 
-                    onClick = {() => {
-                      router.push({
-                        pathname: `/[media]/[id]`,
-                        query: {
-                          id: item.id,
-                          media: item.media_type
-                        }
-                      })
-                    }}
+                    onClick={
+                      () => {
+                        (item.media_type==="movie")? (
+                          router.push({
+                            pathname: `/media/movie/[id]`,
+                            query: {
+                              id: item.id,
+                              media: item.media_type
+                            }
+                          })
+                        ): (item.media_type==="tv")?(
+                          router.push({
+                            pathname: `/media/tv/[id]`,
+                            query: {
+                              id: item.id,
+                              media: item.media_type
+                            }
+                          })
+                        ):null
+                      }
+                    }
                    >
                      Get Details
                    </button>
