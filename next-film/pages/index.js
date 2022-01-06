@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { searchMedia } from '../src/lib/api'
 
@@ -17,10 +17,6 @@ export default function Home({data}) {
     const res = await searchMedia(query)
     await setResults(res)
     await setQuery('')
-  }
-
-  const handleClick = async(id, media) => {
-    router.push(`/${media}-${id}`)
   }
   return (
     <Fragment>
@@ -60,9 +56,19 @@ export default function Home({data}) {
                   ):null
                 }
                 <p>{item.overview}</p>
-                    <button
-                      onClick={() => handleClick(item.id, item.media_type)}
-                    >Get Details</button>
+                   <button 
+                    onClick = {() => {
+                      router.push({
+                        pathname: `/[media]/[id]`,
+                        query: {
+                          id: item.id,
+                          media: item.media_type
+                        }
+                      })
+                    }}
+                   >
+                     Get Details
+                   </button>
               </figure>
             ))
           }

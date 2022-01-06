@@ -9,8 +9,8 @@ export const searchMedia = async(query) => {
     return resJson.results;
 }
 
-export const getDetailsById = async(details) => {
-     const showMedia = `https://api.themoviedb.org/3/${details.media}/${details.id}?api_key=${tmdbToken}&append_to_response=videos`
+export const getDetailsById = async(media, id) => {
+     const showMedia = `https://api.themoviedb.org/3/${media}/${id}?api_key=${tmdbToken}&append_to_response=videos`
 
     const res = await fetch(showMedia);
     const resJson = await res.json();
