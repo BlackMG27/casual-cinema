@@ -16,15 +16,3 @@ export default function Media({detail}){
         </Fragment>
     )
 }
-
-export async function getStaticProps(context){
-    const tmdbToken = process.env.NEXT_PUBLIC_TMDB_API_TOKEN
-    const res = await fetch(`https://api.themoviedb.org/3/${context.media}/${context.id}?api_key=${tmdbToken}&append_to_response=videos`)
-
-    const detail = await res.json();
-    return {
-        props: {
-            detail
-        }
-    }
-}
