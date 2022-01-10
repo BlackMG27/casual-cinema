@@ -5,7 +5,8 @@ import Image from 'next/image'
 
 const MovieInfo = (details) => {
     console.log("movie");
-    const {info} = details
+    const {info, people} = details;
+    const {cast, crew} = people;
     return(
         <Fragment>
             <Head>

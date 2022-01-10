@@ -4,12 +4,15 @@ import Image from 'next/image'
 
 
 const TvInfo = (details) => {
-    console.log("tv");
-    const {info} = details;
+    const {info, people} = details;
+    const {cast, crew} = people;
+    console.log(cast);
+    console.log(crew);
+ 
     return (
         <Fragment>
             <Head>
-                <title>{info.name} - Movie Info</title>
+                <title>{info.name} - Tv Info</title>
             </Head>
             <header>
                 <h1>{info.name}</h1>

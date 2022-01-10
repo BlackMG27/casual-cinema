@@ -17,3 +17,18 @@ export const getDetailsById = async(media, id) => {
     return resJson
 }
 
+export const getCreditList = async(media, id) => {
+    const getCredits = `https://api.themoviedb.org/3/${media}/${id}/credits?api_key=${tmdbToken}`
+
+    const res = await fetch(getCredits)
+    const resJson = await res.json()
+    return resJson;
+}
+
+export const getPersonDetail = async(id) => {
+    const getPerson = `https://api.themoviedb.org/3/person/${id}?api_key=${tmdbToken}`
+
+    const res = await fetch(getPerson)
+    const resJson = await res.json()
+    return resJson;
+}

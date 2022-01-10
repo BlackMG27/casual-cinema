@@ -1,21 +1,20 @@
 import React, {Fragment} from "react";
 import Head from "next/head";
 import Image from "next/image";
-import TvInfo from "../../components/tv-info";
+import TvInfo from "../../components/info/tv-info";
 import MovieInfo from "../../components/info/movie-info";
 import { useRouter } from "next/router";
-import { getDetailsById } from "../../src/lib/api";
+import { getCreditList, getDetailsById } from "../../src/lib/api";
 
 
-export default function Media({details}){
-    console.log(details)
+export default function Media({details, list}){
     return (
         <Fragment>
             {
                 (details.seasons)?(
-                    <TvInfo info={details}/>
+                    <TvInfo info={details} people={list}/>
                 ): (details.title)?(
-                    <MovieInfo info={details}/>
+                    <MovieInfo info={details} people={list}/>
                 ):null
             }
         </Fragment>
@@ -25,9 +24,11 @@ export default function Media({details}){
 export async function getServerSideProps({params}){
     console.log(params)
     const details = await getDetailsById(params.media, params.id)
+    const list = await getCreditList(params.media, params.id)
     return{
         props:{
             details,
+            list,
         }
     }
 }
