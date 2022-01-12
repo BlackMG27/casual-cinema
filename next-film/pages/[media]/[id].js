@@ -1,9 +1,6 @@
 import React, {Fragment} from "react";
-import Head from "next/head";
-import Image from "next/image";
 import TvInfo from "../../components/info/tv-info";
 import MovieInfo from "../../components/info/movie-info";
-import { useRouter } from "next/router";
 import { getCreditList, getDetailsById } from "../../src/lib/api";
 
 

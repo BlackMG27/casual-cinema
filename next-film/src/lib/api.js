@@ -26,6 +26,7 @@ export const getCreditList = async(media, id) => {
 }
 
 export const getPersonDetail = async(id) => {
+    console.log(id)
     const getPerson = `https://api.themoviedb.org/3/person/${id}?api_key=${tmdbToken}`
 
     const res = await fetch(getPerson)
