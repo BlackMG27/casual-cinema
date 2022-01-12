@@ -8,15 +8,18 @@ export default function PersonDetail({person}){
     console.log(person)
     return (
         <Fragment>
-
+            <Head>
+                <title>{`${person.name}'s Bio'`}</title>
+            </Head>
+            <header>
+                <h1></h1>
+            </header>
         </Fragment>
     )
 }
 
 export async function getServerSideProps({params}){
-    console.log(params)
     const person = await getPersonDetail(params.id)
-    console.log(person)
     return {
         props:{
             person
